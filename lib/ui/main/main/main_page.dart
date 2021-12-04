@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/main_controller.dart';
 import 'package:my_goodzone/core/theme/app_colors.dart';
+import 'package:my_goodzone/ui/main/catalog/catalog_page.dart';
+import 'package:my_goodzone/ui/main/favourite/favourites_page.dart';
 import 'package:my_goodzone/ui/main/home/home_page.dart';
 import 'package:my_goodzone/ui/main/orders/orders_page.dart';
 import 'package:my_goodzone/ui/main/profile/profile_page.dart';
@@ -14,23 +15,28 @@ class MainPage extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return GetBuilder<MainController>(
       builder: (controller) => Scaffold(
         body: IndexedStack(
           index: controller.bottomMenu.index,
-          children: [
+          children: const [
             HomePage(),
+            CatalogPage(),
             MyOrdersPage(),
+            FavouritePage(),
             ProfilePage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: AppColors.unselectedBottomNavItem,
-          selectedItemColor: AppColors.assets,
+          unselectedItemColor: AppColors.black,
+          selectedItemColor: AppColors.red,
           onTap: (pos) => controller.setMenu(BottomMenu.values[pos]),
           currentIndex: controller.bottomMenu.index,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.customColor,
           selectedLabelStyle: const TextStyle(
             fontSize: 10,
             fontWeight: FontWeight.w500,
@@ -40,25 +46,25 @@ class MainPage extends GetView<MainController> {
             fontWeight: FontWeight.w500,
           ),
           elevation: 8,
-          items: [
+          items: const [
             BottomNavigationBarItem(
-              label: 'Asosiy',
+              label: 'Главный',
               icon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
-              label: 'Katalog',
+              label: 'Каталог',
               icon: Icon(Icons.search),
             ),
             BottomNavigationBarItem(
-              label: 'Savat',
+              label: 'Корзина',
               icon: Icon(FontAwesomeIcons.shoppingCart),
             ),
             BottomNavigationBarItem(
-              label: 'Sevimlilar',
+              label: 'Избранное',
               icon: Icon(Icons.favorite),
             ),
             BottomNavigationBarItem(
-              label: 'Profil',
+              label: 'Профиль',
               icon: Icon(Icons.person),
             ),
           ],
@@ -67,20 +73,5 @@ class MainPage extends GetView<MainController> {
     );
   }
 
-  _bottomNavigationBarItem(
-      {required String activeIcon,
-      required String icon,
-      required String label}) {
-    return BottomNavigationBarItem(
-      icon: Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: SvgPicture.asset('assets/svg/$icon.svg'),
-      ),
-      activeIcon: Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: SvgPicture.asset('assets/svg/$activeIcon.svg'),
-      ),
-      label: label,
-    );
-  }
+
 }

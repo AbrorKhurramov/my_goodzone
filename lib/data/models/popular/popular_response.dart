@@ -67,12 +67,12 @@ class Products {
     name = json['name'];
     slug = json['slug'];
     category = json['category'] != null
-        ? new ProductCategory.fromJson(json['category'])
+        ? ProductCategory.fromJson(json['category'])
         : null;
-    brand = json['brand'] != null ? new Brand.fromJson(json['brand']) : null;
+    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
     previewText = json['preview_text'];
     active = json['active'];
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    price = json['price'] != null ? Price.fromJson(json['price']) : null;
     if (json['prices'] != null) {
       prices = <Prices>[];
       json['prices'].forEach((v) {

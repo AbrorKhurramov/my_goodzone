@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class Constants {
   // static const baseUrl = 'https://test.customer.api.delever.uz/v1/'; //test
@@ -14,4 +15,15 @@ class Constants {
 
   static const FINISHED_ORDERS = 'e665273d-5415-4243-a329-aee410e39465';
   static const webSocketUrl = 'wss://ws.car24.uz/ws';
+
+  static const kPrimaryColor = Color(0xFFFF7643);
+  static const kBackgroundColor = Color(0xFFFFFFFF);
+  static const kSecondaryColor = Color(0xFF979797);
+  static const kTextColor = Color(0xFF272727);
+  static const kMenuColor = Color(0xFFFF7643);
+  static const kShadowColor = Color(0xFFEDEDED);
+  static const kAnimationDuration = Duration(milliseconds: 200);
+
+  static const double kBorderRadius = 28;
+
 }

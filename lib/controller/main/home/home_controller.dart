@@ -29,6 +29,7 @@ class HomeController extends BaseController with SingleGetTickerProviderMixin {
   List<Price> recPrice=[];
   List<Price> featPrice=[];
 
+
   //List<Categories> _categories = [];
   //List<Orders> _orders = [];
 //  int _index = 0;
@@ -44,6 +45,12 @@ class HomeController extends BaseController with SingleGetTickerProviderMixin {
   void onReady() {
     getData();
     super.onReady();
+  }
+
+  List<Products> getFeatureProducts(int type)  {
+    if(type==1) return featuredList[0].products;
+    else if(type==2) return featuredList[1].products;
+    else return featuredList[2].products;
   }
 
   void getData() {

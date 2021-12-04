@@ -22,7 +22,11 @@ onInit(){
   scrollController = ScrollController();
   tabController = TabController(length: 3, vsync: this);
   super.onInit();
-
+  getProductDetail(Get.arguments[0]);
+  images.add(Get.arguments[2]);
+  getProductImages(Get.arguments[0]);
+  getRelatedProducts(Get.arguments[0]);
+  getShops(Get.arguments[1]);
 }
 
 
@@ -42,7 +46,7 @@ showError(result);
 Future<void> getProductImages(String slug) async {
   final result = await repository!.getProductDetail(slug);
   if (result is ProductDetail) {
-    images.add(result.product!.image??"");
+   // images.add(result.product!.image??"");
     images.addAll(result.product!.gallery!);
     update();
   } else {
@@ -67,6 +71,8 @@ Future<void> getShops(String id) async {
 showError(result);
   }
 }
+
+bool isReverse(bool a) => !a;
 
 
 

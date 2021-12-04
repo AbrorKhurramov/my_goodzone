@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/home/home_controller.dart';
+import 'package:my_goodzone/ui/main/home/promo_detail/promo_detail_page.dart';
 
 class PromoWidget extends StatelessWidget {
   const PromoWidget({
@@ -20,9 +21,10 @@ class PromoWidget extends StatelessWidget {
             return Padding(
               padding:
               const EdgeInsets.only(right: 10, left: 10, top: 5, bottom: 5),
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
-                  //Get.to(DiscountPage(controller.promos[index]));
+
+                  Get.to(DiscountPage(controller.promos[index]));
                 },
                 child: Column(
                   children: [

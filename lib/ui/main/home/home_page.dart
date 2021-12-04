@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:my_goodzone/controller/main/home/home_controller.dart';
 import 'package:my_goodzone/core/custom_widgets/loading_widgets/modal_progress_hud.dart';
+
+import 'package:my_goodzone/routes/app_routes.dart';
 import 'package:my_goodzone/ui/main/home/widgets/banner_widget.dart';
 import 'package:my_goodzone/ui/main/home/widgets/product_list_widget.dart';
 import 'widgets/brands_widget.dart';
@@ -14,8 +16,11 @@ import 'widgets/title_widget.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: buildAppBar(),
       body: GetBuilder<HomeController>(
@@ -86,15 +91,22 @@ class HomePage extends GetView<HomeController> {
       backgroundColor: Colors.white,
       title: Image.asset("assets/images/logo.png"),
       centerTitle: true,
-      actions: const [
+      actions:  [
         Padding(
-          padding: EdgeInsets.all(10),
-          child: Icon(
-            FontAwesomeIcons.bell,
-            color: Colors.black54,
+          padding: const EdgeInsets.all(10),
+          child: GestureDetector(
+            onTap: (){
+              Get.toNamed(Routes.NEWS);
+            },
+            child: const Icon(
+              FontAwesomeIcons.bell,
+              color: Colors.black54,
+            ),
           ),
         )
       ],
     );
   }
+
+
 }

@@ -53,27 +53,6 @@ class BannerWidget extends StatelessWidget {
               ),
             ),
           ),
-      //     Visibility(
-      //   visible: controller.banners.isNotEmpty,
-      //   child: Container(
-      //     height: width * 88 / 112,
-      //     margin: EdgeInsets.only(left: 12, top: 12),
-      //     child: ListView.builder(
-      //         physics: BouncingScrollPhysics(),
-      //         itemCount: controller.banners.length,
-      //         scrollDirection: Axis.horizontal,
-      //         itemBuilder: (context, index) {
-      //           var banner = controller.banners[index];
-      //           return BannerItem(
-      //             banner: banner,
-      //             onTap:
-      //                 () {} /*=>
-      //                   Get.toNamed(Routes.BANNER_DETAIL, arguments: banner)*/
-      //             ,
-      //           );
-      //         }),
-      //   ),
-      // ),
     );
   }
 }

@@ -53,6 +53,10 @@ dependencies:
   firebase_core: ^1.10.0
   firebase_messaging: ^11.1.0
   intl: any
+  shimmer: ^2.0.0
+  animations: ^2.0.2
+  flutter_rating_bar: ^4.0.0
+
 
 
 

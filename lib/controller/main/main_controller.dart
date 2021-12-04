@@ -4,7 +4,7 @@ import 'package:my_goodzone/data/provider/web_socket.dart';
 
 class MainController extends BaseController {
 
-  BottomMenu _bottomMenu = BottomMenu.HOME;
+  BottomMenu _bottomMenu = BottomMenu.MY_HOME;
 
   @override
   void onInit() {
@@ -12,13 +12,11 @@ class MainController extends BaseController {
     WebSocketSource.getInstance(token: token);
     super.onInit();
   }
-
   void setMenu(BottomMenu menu) {
     _bottomMenu = menu;
     update();
   }
-
   BottomMenu get bottomMenu => _bottomMenu;
 }
 
-enum BottomMenu { HOME, MY_ORDERS, PROFILE }
+enum BottomMenu { MY_HOME,CATALOG,BASKET,FAVOURITE, PROFILE }

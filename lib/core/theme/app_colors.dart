@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+
   static const white = Color(0xFFffffff);
   static const black = Color(0xFF000000);
   static const assets = Color(0xff51267D);
@@ -28,6 +29,7 @@ class AppColors {
   static const black2 = Color(0xff818C99);
   static const mainColor2 = Color(0xff0E0D23);
   static const dividerColor = Color.fromRGBO(4, 4, 21, 0.08);
+  static const customColor = Color.fromRGBO(249, 249, 249, 1.0);
   static const black1 = Color(0xff040415);
   static const color1 = Color(0xff1A1A1A);
   static const black05 = Color.fromRGBO(0, 0, 0, 0.05);

@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.0"
+  animations:
+    dependency: "direct main"
+    description:
+      name: animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   args:
     dependency: transitive
     description:
@@ -461,6 +468,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -919,6 +933,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  shimmer:
+    dependency: "direct main"
+    description:
+      name: shimmer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

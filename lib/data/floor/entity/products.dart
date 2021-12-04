@@ -1,18 +1,21 @@
 import 'package:floor/floor.dart';
 
 @entity
-class Products {
+class FavouriteProduct {
   @primaryKey
   String id;
+  String slug;
+  String category;
   String name;
-  int price;
-  int quantity;
+  String price;
   String image;
 
-  Products(
+  FavouriteProduct(
       {required this.id,
       required this.image,
       required this.name,
+        required this.slug,
+        required this.category,
       required this.price,
-      required this.quantity});
+      });
 }

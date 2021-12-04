@@ -8,6 +8,6 @@ class ProductDetailBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProductDetailController>(() => ProductDetailController(repository: HomeRepository(apiClient: ApiClient.getInstance()
-    )));
+    )),);
   }
 }

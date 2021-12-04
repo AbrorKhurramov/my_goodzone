@@ -27,7 +27,7 @@ class TitleWidget extends StatelessWidget {
           InkWell(
             onTap: onClick,
             child: Text(
-              'все',
+              'Bсе',
               style: TextStyle(color: Colors.red, fontSize: 18),
             ),
           )

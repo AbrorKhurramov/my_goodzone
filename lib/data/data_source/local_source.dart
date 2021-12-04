@@ -1,13 +1,14 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:my_goodzone/data/floor/app_database.dart';
 import 'package:my_goodzone/data/floor/dao/product_dao.dart';
+import 'package:my_goodzone/data/floor/entity/basket_products.dart';
 import 'package:my_goodzone/data/floor/entity/products.dart';
 import 'package:my_goodzone/data/keys/app_keys.dart';
 import 'package:my_goodzone/data/models/customer/customer.dart';
 
 class LocalSource {
-  var _localStorage = GetStorage();
-  ProductDao _productDao = AppDatabase.instance.productDao;
+  final _localStorage = GetStorage();
+  final ProductDao _productDao = AppDatabase.instance.productDao;
 
   LocalSource._();
 
@@ -16,33 +17,78 @@ class LocalSource {
   static LocalSource getInstance() {
     if (_instance != null) {
       return _instance!;
-    } else
-      return LocalSource._();
-  }
-
-  Stream<List<Products>>? getAllBasketProducts() {
-    return _productDao.getBasketProducts();
-  }
-
-  Future<void> updateQuantity(
-      {bool isMinus = false,
-      bool isDelete = false,
-      required Products product}) async {
-    if (isMinus) {
-      if (product.quantity > 1) {
-        product.quantity = product.quantity - 1;
-        await updateProduct(product);
-      } else if (isDelete) {
-        removeProduct(product);
-      }
     } else {
-      product.quantity = product.quantity + 1;
-      await updateProduct(product);
+      return LocalSource._();
     }
   }
 
-  Future<List<Products>>? getAllBasketProductsAsync() {
-    return _productDao.getBasketProductsAsync();
+  //Favourites
+  Stream<List<FavouriteProduct>>? getAllFavouriteProducts() {
+    return _productDao.getFavouriteProducts();
+  }
+
+
+  Future<List<FavouriteProduct>?>? getAllFavouriteProductsAsync() async {
+    return await _productDao.getFavouriteProductsAsync();
+  }
+
+
+  Future<void> insertProduct(FavouriteProduct product) async {
+    await _productDao.insertFavouriteProduct(product);
+  }
+
+  Future<void> removeProduct(String id) async {
+    await _productDao.deleteById(id);
+  }
+
+  Future<void> updateProduct(FavouriteProduct product) async {
+    await _productDao.updateFavouriteProduct(product);
+  }
+
+  // Basket
+
+  Stream<List<BasketProduct>>? getAllBasketProducts() {
+    return _productDao.getBasketProducts();
+  }
+
+  Future<void> insertBasketProduct(BasketProduct product) async {
+    await _productDao.insertProduct(product);
+  }
+
+  Future<void> removeBasketProduct(String id) async {
+    await _productDao.deleteFromBasketById(id);
+  }
+
+  Future<void> updateBasketProduct(BasketProduct product) async {
+    await _productDao.updateBasketProduct(product);
+  }
+
+
+  Future<void> removeAll(List<BasketProduct> products) async {
+    await _productDao.removeAllProducts(products);
+  }
+
+
+  Future<void> updateQuantity(
+      {bool isMinus = false,
+      required BasketProduct product}) async {
+    if (isMinus) {
+      if (product.quantity > 1) {
+        product.quantity = product.quantity - 1;
+        await updateBasketProduct(product);
+      } else  {
+        removeBasketProduct(product.id);
+      }
+    } else {
+      product.quantity = product.quantity + 1;
+      await updateBasketProduct(product);
+    }
+  }
+
+  ////
+
+  bool hasProfile() {
+    return _localStorage.read<bool>(AppKeys.HAS_PROFILE) ?? false;
   }
 
   Future<void> removeProfile() async {
@@ -53,26 +99,6 @@ class LocalSource {
     await _localStorage.remove(AppKeys.PHONE);
     await _localStorage.remove(AppKeys.ACCESS_TOKEN);
     await _localStorage.remove(AppKeys.REFRESH_TOKEN);
-  }
-
-  Future<void> insertProduct(Products product) async {
-    await _productDao.insertProduct(product);
-  }
-
-  Future<void> removeProduct(Products product) async {
-    await _productDao.removeProduct(product);
-  }
-
-  Future<void> updateProduct(Products product) async {
-    await _productDao.updateProduct(product);
-  }
-
-  Future<void> removeAll(List<Products> products) async {
-    await _productDao.removeAll(products);
-  }
-
-  bool hasProfile() {
-    return _localStorage.read<bool>(AppKeys.HAS_PROFILE) ?? false;
   }
 
   Future<void> setCustomer(Customer customer) async {

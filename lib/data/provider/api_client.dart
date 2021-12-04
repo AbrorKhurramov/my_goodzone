@@ -2,6 +2,7 @@ import 'package:my_goodzone/core/constants/constants.dart';
 import 'package:alice/alice.dart';
 import 'package:my_goodzone/data/models/brands/brand_response.dart';
 import 'package:my_goodzone/data/models/carousel/carousel_response.dart';
+import 'package:my_goodzone/data/models/news/news.dart';
 import 'package:my_goodzone/data/models/popular/popular_response.dart';
 import 'package:my_goodzone/data/models/products/featured_list_response.dart';
 import 'package:my_goodzone/data/models/products/shop_response.dart';
@@ -77,6 +78,10 @@ abstract class ApiClient {
 
   @GET("/category")
   Future<Category> getCategory(
+      @Query("limit") int limit,
+      );
+@GET("/new")
+  Future<NewsModel> getNews(
       @Query("limit") int limit,
       );
 
