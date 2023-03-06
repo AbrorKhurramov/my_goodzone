@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -25,61 +26,58 @@ class HomePage extends GetView<HomeController> {
       appBar: buildAppBar(),
       body: GetBuilder<HomeController>(
         builder:(controller) =>
-            ModalProgressHUD(
-          inAsyncCall: controller.isLoading,
-          child: SafeArea(
-            child: LiquidPullToRefresh(
-              onRefresh: () async => controller.getData(),
-              child: ListView(
-                children: [
-                  const SizedBox(height: 5),
+            SafeArea(
+              child: LiquidPullToRefresh(
+                onRefresh: () async => controller.getData(),
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 5),
 
-                  //carusel
-                  const BannerWidget(),
-                  const SizedBox(height: 5),
+                    //carusel
+                    const BannerWidget(),
+                    const SizedBox(height: 5),
 
-                  //aksiya title
-                  TitleWidget(
-                    title: "Акции",
-                    onClick: () {},
-                  ),
-                  const SizedBox(height: 5),
+                    //aksiya title
+                    TitleWidget(
+                      title: "Акции",
+                      onClick: () {},
+                    ),
+                    const SizedBox(height: 5),
 
-                  //aksiya list
-                  const PromoWidget(),
+                    //aksiya list
+                    const PromoWidget(),
 
-                  //populyarni_title
-                  TitleWidget(title: "Лучшая подборка для вас", onClick: () {}),
+                    //populyarni_title
+                    TitleWidget(title: "Лучшая подборка для вас", onClick: () {}),
 
-                  //populyarni_list
-                   const ProductListWidget(type: 1),
+                    //populyarni_list
+                     const ProductListWidget(type: 1),
 
-                  const SizedBox(height: 5),
+                    const SizedBox(height: 5),
 
-                  //recommended_title
-                  TitleWidget(title: "Популярные товары", onClick: () {}),
+                    //recommended_title
+                    TitleWidget(title: "Популярные товары", onClick: () {}),
 
-                  //recommended_list
-                   const ProductListWidget(type: 2),
+                    //recommended_list
+                     const ProductListWidget(type: 2),
 
-                  //new_title
-                  TitleWidget(title: "Новые поступления", onClick: () {}),
+                    //new_title
+                    TitleWidget(title: "Новые поступления", onClick: () {}),
 
-                  //new_list
-                   const ProductListWidget(type: 3),
+                    //new_list
+                     const ProductListWidget(type: 3),
 
-                  const SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
-                  //brands
-                  const BrandsWidget(),
-                  const SizedBox(height: 10),
+                    //brands
+                    const BrandsWidget(),
+                    const SizedBox(height: 10),
 
-                ],
-                physics: const BouncingScrollPhysics(),
+                  ],
+                  physics: const BouncingScrollPhysics(),
+                ),
               ),
             ),
-          ),
-        ),
       ),
     );
   }
@@ -88,9 +86,11 @@ class HomePage extends GetView<HomeController> {
 
   AppBar buildAppBar() {
     return AppBar(
+      elevation: 0.5,
       backgroundColor: Colors.white,
-      title: Image.asset("assets/images/logo.png"),
+      title: SvgPicture.asset("assets/flutterassets/logo.svg",width: 140,),
       centerTitle: true,
+      automaticallyImplyLeading: false,
       actions:  [
         Padding(
           padding: const EdgeInsets.all(10),
@@ -98,9 +98,8 @@ class HomePage extends GetView<HomeController> {
             onTap: (){
               Get.toNamed(Routes.NEWS);
             },
-            child: const Icon(
-              FontAwesomeIcons.bell,
-              color: Colors.black54,
+            child: SvgPicture.asset(
+              "assets/flutterassets/ic_notifications.svg",
             ),
           ),
         )

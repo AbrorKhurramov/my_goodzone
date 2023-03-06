@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/profile/profile_controller.dart';
+import 'package:my_goodzone/routes/app_routes.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   const ProfilePage({Key? key}) : super(key: key);
@@ -11,15 +12,21 @@ class ProfilePage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  AppBar(
+        elevation: 0.5,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: Image.asset("assets/images/logo.png"),
+        title:  SvgPicture.asset("assets/flutterassets/logo.svg",width: 140,),
         centerTitle: true,
-        actions: const [
+        actions:  [
           Padding(
-            padding: EdgeInsets.all(10),
-            child: Icon(
-              FontAwesomeIcons.bell,
-              color: Colors.black54,
+            padding: const EdgeInsets.all(10),
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(Routes.NEWS);
+              },
+              child: SvgPicture.asset(
+                "assets/flutterassets/ic_notifications.svg",
+              ),
             ),
           )
         ],
@@ -51,20 +58,20 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(FontAwesomeIcons.userEdit,size: 20),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_7.svg"),
                 ),
-                SizedBox(width: 40),
-                Text('Изменить профиль',style: TextStyle(
+                const SizedBox(width: 40),
+               const Text('Изменить профиль',style:  TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 160
+                const SizedBox(width: 160
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),
@@ -74,19 +81,19 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(Icons.auto_stories),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_2.svg"),
                 ),
-                Text('История заказов',style: TextStyle(
+                const Text('История заказов',style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 100
+                const SizedBox(width: 100
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),
@@ -96,19 +103,19 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(FontAwesomeIcons.store,size: 20),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_3.svg"),
                 ),
-                Text('Магазины',style: TextStyle(
+                const Text('Магазины',style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 150
+                const SizedBox(width: 150
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),
@@ -118,19 +125,19 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(Icons.settings,size: 25),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_4.svg"),
                 ),
-                Text('Настройки',style: TextStyle(
+                const Text('Настройки',style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 150
+                const SizedBox(width: 150
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),
@@ -140,19 +147,19 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(FontAwesomeIcons.briefcase,size: 20),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_5.svg"),
                 ),
-                Text('Сотрудничество',style: TextStyle(
+                const Text('Сотрудничество',style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 100
+                const SizedBox(width: 100
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),
@@ -162,19 +169,19 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(FontAwesomeIcons.headphonesAlt,size: 20),
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset("assets/flutterassets/ic_profile_6.svg"),
                 ),
-                Text('Контакты',style: TextStyle(
+                const Text('Контакты',style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                 ),),
-                SizedBox(width: 150
+                const SizedBox(width: 150
                   ,),
-                Icon(Icons.navigate_next,color: Colors.black12,)
+                const Icon(Icons.navigate_next,color: Colors.black12,)
               ],),
           ),
           const SizedBox(height: 5),

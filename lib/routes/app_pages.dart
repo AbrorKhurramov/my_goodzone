@@ -9,6 +9,7 @@ import 'package:my_goodzone/ui/main/home/notification/notification_page.dart';
 import 'package:my_goodzone/ui/main/home/product_detail/product_detail_page.dart';
 import 'package:my_goodzone/ui/main/main/main_page.dart';
 import 'package:my_goodzone/ui/main/orders/orders_page.dart';
+import 'package:my_goodzone/ui/main/profile/authentication_page.dart';
 import 'package:my_goodzone/ui/main/profile/profile_page.dart';
 import 'package:my_goodzone/ui/news/news_page.dart';
 import 'package:my_goodzone/ui/splash/splash_page.dart';
@@ -22,13 +23,13 @@ class AppPages {
 
     GetPage(
         name: Routes.MAIN,
-        page: () => const MainPage(),
+        page: () =>  MainPage(),
         binding: MainBindings()
     ),
 GetPage(
         name: Routes.HOME,
         page: () => const HomePage(),
-        binding: MainBindings()
+        // binding: MainBindings()
     ),
 
     GetPage(
@@ -46,26 +47,31 @@ GetPage(
 GetPage(
       name: Routes.FAVOURITE,
       page: () =>   const FavouritePage(),
-      binding: MainBindings(),
+      // binding: MainBindings(),
     ),GetPage(
       name: Routes.BASKET,
       page: () =>   const MyOrdersPage(),
-      binding: MainBindings(),
+      // binding: MainBindings(),
     ),
     GetPage(
       name: Routes.CATALOG,
       page: () =>   const CatalogPage(),
-      binding: MainBindings(),
+      // binding: MainBindings(),
     ),
     GetPage(
       name: Routes.NEWS,
       page: () =>   NewsPage(),
-      binding: MainBindings(),
+      // binding: MainBindings(),
     ),
 GetPage(
       name: Routes.PROFILE,
       page: () =>   const ProfilePage(),
-      binding: MainBindings(),
+      // binding: MainBindings(),
+    ),
+    GetPage(
+      name: Routes.AUTH,
+      page: () =>    AuthenticationPage(),
+      // binding: MainBindings(),
     ),
 
   ];

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/main_controller.dart';
 import 'package:my_goodzone/core/theme/app_colors.dart';
@@ -8,10 +9,11 @@ import 'package:my_goodzone/ui/main/catalog/catalog_page.dart';
 import 'package:my_goodzone/ui/main/favourite/favourites_page.dart';
 import 'package:my_goodzone/ui/main/home/home_page.dart';
 import 'package:my_goodzone/ui/main/orders/orders_page.dart';
+import 'package:my_goodzone/ui/main/profile/authentication_page.dart';
 import 'package:my_goodzone/ui/main/profile/profile_page.dart';
 
 class MainPage extends GetView<MainController> {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +29,15 @@ class MainPage extends GetView<MainController> {
             CatalogPage(),
             MyOrdersPage(),
             FavouritePage(),
-            ProfilePage(),
+            AuthenticationPage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: AppColors.black,
           selectedItemColor: AppColors.red,
-          onTap: (pos) => controller.setMenu(BottomMenu.values[pos]),
+          onTap: (pos) {
+            controller.setMenu(BottomMenu.values[pos]);
+          } ,
           currentIndex: controller.bottomMenu.index,
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppColors.customColor,
@@ -46,26 +50,36 @@ class MainPage extends GetView<MainController> {
             fontWeight: FontWeight.w500,
           ),
           elevation: 8,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               label: 'Главный',
-              icon: Icon(Icons.home),
+              icon: Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SvgPicture.asset("assets/flutterassets/ic_menu_home.svg",color: controller.bottomMenu.index==0?Colors.red:Colors.black,)),
             ),
             BottomNavigationBarItem(
               label: 'Каталог',
-              icon: Icon(Icons.search),
+              icon: Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SvgPicture.asset("assets/flutterassets/ic_menu_search.svg",color: controller.bottomMenu.index==1?Colors.red:Colors.black,)),
             ),
             BottomNavigationBarItem(
               label: 'Корзина',
-              icon: Icon(FontAwesomeIcons.shoppingCart),
+              icon: Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SvgPicture.asset("assets/flutterassets/ic_menu_shopping.svg",color: controller.bottomMenu.index==2?Colors.red:Colors.black,)),
             ),
             BottomNavigationBarItem(
               label: 'Избранное',
-              icon: Icon(Icons.favorite),
+              icon: Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SvgPicture.asset("assets/flutterassets/ic_menu_favorites.svg",color: controller.bottomMenu.index==3?Colors.red:Colors.black,)),
             ),
             BottomNavigationBarItem(
               label: 'Профиль',
-              icon: Icon(Icons.person),
+              icon: Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SvgPicture.asset("assets/flutterassets/ic_menu_profile.svg",color: controller.bottomMenu.index==4?Colors.red:Colors.black,)),
             ),
           ],
         ),

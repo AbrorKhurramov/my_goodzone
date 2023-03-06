@@ -5,6 +5,7 @@ import 'package:my_goodzone/controller/main/home/home_controller.dart';
 import 'package:my_goodzone/data/data_source/local_source.dart';
 import 'package:my_goodzone/data/floor/entity/products.dart';
 import 'package:my_goodzone/routes/app_routes.dart';
+import 'package:my_goodzone/ui/main/home/widgets/item_loading.dart';
 
 class ProductListWidget extends StatefulWidget {
   final int type;
@@ -24,20 +25,25 @@ class _ProductListWidgetState extends State<ProductListWidget> {
       builder: (controller) => SizedBox(
         height: 250,
         child: Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(left: 8),
           child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: controller.featuredList.isEmpty ? 0 : controller.getFeatureProducts(widget.type).length,
+            itemCount: controller.featuredList.isEmpty ? 4 : controller.getFeatureProducts(widget.type).length,
             itemBuilder: (context, index) {
-              return Container(
-                width: 180,
+              return
+                controller.featuredList.isEmpty?
+                const ItemLoadingCard()
+                    :
+                Container(
+                width: 170,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(6),
                   color: Colors.white,
-                  boxShadow: const [
+                  boxShadow:  [
                     BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 0.5), //(x,y)
+                      color: Colors.grey.withOpacity(0.5),
+                      offset: const Offset(0.0, 0.5), //(x,y)
                       blurRadius: 3.0,
                     ),
                   ],
@@ -95,7 +101,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                                     child: Container(
                                       height: 27,
                                       width: 27,
-                                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.25)),
+                                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.2)),
                                       child: Icon(
                                         Icons.favorite,
                                         color: checkFav ? Colors.red : Colors.grey,
@@ -153,7 +159,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
-                width: 8,
+                width: 6,
               );
             },
           ),

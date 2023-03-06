@@ -17,33 +17,55 @@ class FavouritePage extends GetView<FavouriteController> {
     return GetBuilder<FavouriteController>(
         builder: (controller) => Scaffold(
             appBar: buildAppBar(),
+            backgroundColor: Colors.grey.withOpacity(0.03),
             body: StreamBuilder(
                 stream: LocalSource.getInstance().getAllFavouriteProducts(),
                 builder: (context, AsyncSnapshot<List<FavouriteProduct>>? snapshot) {
-                  return snapshot!.data!.isEmpty
+                  return (snapshot!.data?.isEmpty??true)
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
-                            child: Image.asset("assets/images/Capture.PNG"),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/flutterassets/scene_12.png"),
+                                const SizedBox(height: 50),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 28.0),
+                                  child: Text("У вас еще нет избранное",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                                ),
+                              ],
+                            ),
                           ),
                         )
-                      : GridView.builder(
-                          itemCount: snapshot.data!.length,
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.7),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
+                      : Padding(
+                        padding: const EdgeInsets.only(top: 10,left: 8,right: 8),
+                        child: GridView.builder(
+                            itemCount: snapshot.data!.length,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.7),
+                            itemBuilder: (BuildContext context, int index) {
+                              return buildFavouriteItem(snapshot, index, homeController, controller);
+                            }),
+                      );
+
+                })));
+  }
+
+  Container buildFavouriteItem(AsyncSnapshot<List<FavouriteProduct>> snapshot, int index, HomeController homeController, FavouriteController controller) {
+    return Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
-                                boxShadow: const [
+                                boxShadow:  [
                                   BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(0.0, 0.5), //(x,y)
+                                    color: Colors.grey.withOpacity(0.5),
+                                    offset: const Offset(0.0, 0.5), //(x,y)
                                     blurRadius: 3.0,
                                   ),
                                 ],
                               ),
-                              margin: const EdgeInsets.all(12),
+                              margin: const EdgeInsets.all(8),
                               child: GestureDetector(
                                 onTap: () {
                                   var product = snapshot.data![index];
@@ -61,7 +83,7 @@ class FavouritePage extends GetView<FavouriteController> {
                                           Container(
                                             height: 27,
                                             width: 27,
-                                            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.25)),
+                                            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.2)),
                                             child: IconButton(
                                                 padding: EdgeInsets.zero,
                                                 icon: const Icon(
@@ -118,13 +140,12 @@ class FavouritePage extends GetView<FavouriteController> {
                                 ),
                               ),
                             );
-                          });
-
-                })));
   }
 
   AppBar buildAppBar() {
     return AppBar(
+      elevation: 0.5,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       title: const Text(
         "Избраннoе",

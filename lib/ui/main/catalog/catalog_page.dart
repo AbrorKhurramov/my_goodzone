@@ -12,6 +12,8 @@ class CatalogPage extends GetView<SearchController>{
     return GetBuilder<SearchController>(
       builder:(controller) => Scaffold(
         appBar: AppBar(
+          elevation: 0.5,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: const Text(
             'Категории',

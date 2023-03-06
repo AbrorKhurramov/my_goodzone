@@ -11,8 +11,6 @@ import 'package:get/get.dart';
 
 class HomeController extends BaseController with SingleGetTickerProviderMixin {
   final HomeRepository? repository;
- // LocalSource _localSource = LocalSource.getInstance();
-
   HomeController({
     required this.repository,
   }) : assert(repository != null);
@@ -48,9 +46,13 @@ class HomeController extends BaseController with SingleGetTickerProviderMixin {
   }
 
   List<Products> getFeatureProducts(int type)  {
-    if(type==1) return featuredList[0].products;
-    else if(type==2) return featuredList[1].products;
-    else return featuredList[2].products;
+    if(type==1) {
+      return featuredList[0].products;
+    } else if(type==2) {
+      return featuredList[1].products;
+    } else {
+      return featuredList[2].products;
+    }
   }
 
   void getData() {
@@ -58,30 +60,25 @@ class HomeController extends BaseController with SingleGetTickerProviderMixin {
     getPromos();
     getBrands();
 
-   // getPopularProducts();
-   // getRecommendedProducts();
     getProducts();
 
 
-    //getCategoryWithProducts();
+
   }
 
-  // void setIndex(int i) {
-  //   _index = i;
-  //   update();
-  // }
 
   /// get banner list from api
   Future<void> getBanners() async {
     setLoading(true);
     final result = await repository?.getBanners();
-    setLoading(false);
+
     if (result is BannerResponse) {
       banners = result.banners;
       update();
     } else {
       showError(result);
     }
+    setLoading(false);
   }
   Future<void> getBrands() async {
     setLoading(true);
@@ -115,10 +112,10 @@ class HomeController extends BaseController with SingleGetTickerProviderMixin {
       List<Price> list1=[];
       List<Price> list2=[];
       List<Price> list3=[];
-      for(int i=0;i<result.featuredLists[0].products.length;i++) {
-        list1.add(result.featuredLists[0].products[i].price!);
-        list2.add(result.featuredLists[1].products[i].price!);
-        list3.add(result.featuredLists[2].products[i].price!);
+      for(int i=0;i<result.featuredLists[1].products.length;i++) {
+        list1.add(result.featuredLists[1].products[i].price!);
+        list2.add(result.featuredLists[2].products[i].price!);
+        list3.add(result.featuredLists[3].products[i].price!);
       }
       prices=list1;
       recPrice = list2;

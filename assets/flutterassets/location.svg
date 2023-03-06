@@ -1,0 +1,15 @@
+<svg id="icon_communication_add_call_24px" data-name="icon/communication/add_call_24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="icon_communication_location_on_24px" data-name="icon/communication/location_on_24px" d="M5.838,16.225a.829.829,0,0,1-.638-.3C3.636,14.044,0,9.294,0,5.833A5.835,5.835,0,0,1,9.96,1.707a5.8,5.8,0,0,1,1.707,4.126c0,3.438-3.631,8.2-5.192,10.091A.827.827,0,0,1,5.838,16.225Zm0-12.475A2.084,2.084,0,1,0,7.917,5.833,2.086,2.086,0,0,0,5.833,3.75Z" transform="translate(0 0)" fill="#1e1e1e"/>
+    </clipPath>
+  </defs>
+  <g id="Group_2" data-name="Group 2" transform="translate(4.167 1.888)">
+    <path id="icon_communication_location_on_24px-2" data-name="icon/communication/location_on_24px" d="M5.838,16.225a.829.829,0,0,1-.638-.3C3.636,14.044,0,9.294,0,5.833A5.835,5.835,0,0,1,9.96,1.707a5.8,5.8,0,0,1,1.707,4.126c0,3.438-3.631,8.2-5.192,10.091A.827.827,0,0,1,5.838,16.225Zm0-12.475A2.084,2.084,0,1,0,7.917,5.833,2.086,2.086,0,0,0,5.833,3.75Z" transform="translate(0 0)" fill="#1e1e1e"/>
+    <g id="Mask_Group_2" data-name="Mask Group 2" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="↳ Color" transform="translate(-4.167 -1.888)">
+        <rect id="Rectangle" width="20" height="20" fill="#1e1e1e"/>
+      </g>
+    </g>
+  </g>
+</svg>

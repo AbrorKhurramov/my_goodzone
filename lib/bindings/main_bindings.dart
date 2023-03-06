@@ -17,17 +17,18 @@ class MainBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => SplashController());
-    Get.lazyPut<FavouriteController>(() => FavouriteController());
-    Get.lazyPut<ProfileController>(() => ProfileController());
-    Get.lazyPut<MyOrdersController>(() => MyOrdersController());
-    Get.lazyPut<SearchController>(() => SearchController(catalogRepository: CatalogRepository(apiClient: ApiClient.getInstance())));
-    Get.lazyPut<NewsController>(() => NewsController(newsRepository: NewsRepository(apiClient: ApiClient.getInstance())));
+    Get.lazyPut<FavouriteController>(() => FavouriteController(),fenix: true);
+    Get.lazyPut<ProfileController>(() => ProfileController(),fenix: true);
+    Get.lazyPut<MyOrdersController>(() => MyOrdersController(),fenix: true);
+    Get.lazyPut<SearchController>(() => SearchController(
+        catalogRepository: CatalogRepository(apiClient: ApiClient.getInstance())),fenix: true);
+    Get.lazyPut<NewsController>(() => NewsController(
+        newsRepository: NewsRepository(apiClient: ApiClient.getInstance())),fenix: true);
     Get.lazyPut(() => MainController(), fenix: true);
     Get.lazyPut<HomeController>(
       () => HomeController(
         repository: HomeRepository(apiClient: ApiClient.getInstance()),
       ),
-
       fenix: true,
     );
   }

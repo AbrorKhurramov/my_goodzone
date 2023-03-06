@@ -1,0 +1,26 @@
+<svg id="ic_uzcard_blue_copy_2" data-name="ic_uzcard_blue copy 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44" height="28" viewBox="0 0 44 28">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Mask" width="44" height="28" rx="4" fill="#fff" stroke="#f4f4f4" stroke-miterlimit="10" stroke-width="1"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.094" y1="1.088" x2="0.906" y2="-0.088" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8f86c0"/>
+      <stop offset="1" stop-color="#c7c3df"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.219" y1="2.779" x2="0.781" y2="-1.779" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#816a6a"/>
+      <stop offset="1" stop-color="#9d8b8b"/>
+    </linearGradient>
+  </defs>
+  <g id="Mask-2" data-name="Mask" fill="#fff" stroke="#f4f4f4" stroke-miterlimit="10" stroke-width="1">
+    <rect width="44" height="28" rx="4" stroke="none"/>
+    <rect x="0.5" y="0.5" width="43" height="27" rx="3.5" fill="none"/>
+  </g>
+  <g id="ic_uzcard_blue_copy_2-2" data-name="ic_uzcard_blue copy 2" clip-path="url(#clip-path)">
+    <g id="online-shopping" transform="translate(10 6)">
+      <rect id="Rectangle" width="24" height="16" rx="2" fill="url(#linear-gradient)"/>
+      <path id="Path" d="M0,0H22.261V2.742H0Z" transform="translate(1 3.226)" fill="url(#linear-gradient-2)"/>
+      <path id="Path-2" data-name="Path" d="M7.34,1.613H.807A.807.807,0,0,1,.807,0H7.34a.807.807,0,1,1,0,1.613Z" transform="translate(3.662 8.953)" fill="#b9acac"/>
+    </g>
+  </g>
+</svg>

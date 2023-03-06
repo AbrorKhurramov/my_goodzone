@@ -13,21 +13,21 @@ class BrandsWidget extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder:(controller) => SizedBox(
         height: 80,
-        width: 120,
         child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: controller.brands.length,
           itemBuilder: (context, index) {
             return ClipRRect(
               child: SizedBox(
                   height: 80,
-                  width: 120,
+                  width: 90,
                   child: Image.network(controller.brands[index].image.toString())),
               borderRadius: BorderRadius.circular(16),
             );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return const SizedBox(width: 10);
+            return const SizedBox(width: 2);
           },
         ),
       ),

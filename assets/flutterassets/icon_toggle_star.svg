@@ -1,0 +1,15 @@
+<svg id="icon_toggle_star_24px-2" data-name="icon/toggle/star_24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="icon_toggle_star_24px" data-name="icon/toggle/star_24px" d="M5.7,9.132l2.767,1.673a.665.665,0,0,0,.993-.72L8.731,6.938l2.447-2.12a.665.665,0,0,0-.38-1.167l-3.22-.273L6.318.405a.667.667,0,0,0-1.227,0L3.831,3.372l-3.22.273a.665.665,0,0,0-.38,1.167l2.447,2.12-.733,3.147a.665.665,0,0,0,.993.72L5.7,9.132Z" transform="translate(0)" fill="#1e1e1e"/>
+    </clipPath>
+  </defs>
+  <g id="Group_13" data-name="Group 13" transform="translate(2.295 2.548)">
+    <path id="icon_toggle_star_24px-3" data-name="icon/toggle/star_24px" d="M5.7,9.132l2.767,1.673a.665.665,0,0,0,.993-.72L8.731,6.938l2.447-2.12a.665.665,0,0,0-.38-1.167l-3.22-.273L6.318.405a.667.667,0,0,0-1.227,0L3.831,3.372l-3.22.273a.665.665,0,0,0-.38,1.167l2.447,2.12-.733,3.147a.665.665,0,0,0,.993.72L5.7,9.132Z" transform="translate(0)" fill="#1e1e1e"/>
+    <g id="Mask_Group_13" data-name="Mask Group 13" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="↳ Color" transform="translate(-2.295 -2.548)">
+        <rect id="Rectangle" width="16" height="16" fill="#1e1e1e"/>
+      </g>
+    </g>
+  </g>
+</svg>

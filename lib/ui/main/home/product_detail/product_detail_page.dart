@@ -5,36 +5,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/favourite/favourite_controller.dart';
 import 'package:my_goodzone/controller/main/home/home_controller.dart';
 import 'package:my_goodzone/controller/main/home/product_detail/product_detail_controller.dart';
+import 'package:my_goodzone/controller/main/main_controller.dart';
 import 'package:my_goodzone/controller/main/my_orders/my_orders_controller.dart';
 import 'package:my_goodzone/data/data_source/local_source.dart';
 import 'package:my_goodzone/data/floor/entity/basket_products.dart';
 import 'package:my_goodzone/data/floor/entity/products.dart';
 import 'package:my_goodzone/data/provider/api_client.dart';
 import 'package:my_goodzone/data/repository/home/home_repository.dart';
-import 'package:my_goodzone/routes/app_routes.dart';
-import 'package:my_goodzone/ui/main/home/widgets/title_widget.dart';
+import 'package:my_goodzone/ui/main/home/product_detail/widgets/related_products.dart';
 
 class ProductDetailPage extends GetView<ProductDetailController> {
   const ProductDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    FavouriteController favouriteController = Get.find();
-    HomeController homeController = Get.find();
-    MyOrdersController myOrdersController = Get.find();
+    FavouriteController favouriteController = Get.find<FavouriteController>();
+    HomeController homeController = Get.find<HomeController>();
+    MyOrdersController myOrdersController = Get.find<MyOrdersController>();
 
     return GetBuilder<ProductDetailController>(
-      init: Get.put(ProductDetailController(repository: HomeRepository(apiClient: ApiClient.getInstance())), tag: Get.arguments[0]),
-      tag: Get.arguments[0],
+      init: Get.put(ProductDetailController(repository: HomeRepository(apiClient: ApiClient.getInstance())), tag: Get.arguments!=null?Get.arguments[0]:""),
+      tag:Get.arguments!=null? Get.arguments[0]:"",
       builder: (controller) {
         return           Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          elevation: 1,
+          elevation: 0.5,
+          automaticallyImplyLeading: false,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             onPressed: () => Get.back(),
@@ -78,7 +80,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
           ],
           title: Center(
               child: Text(
-                Get.arguments[4],
+               Get.arguments!=null? Get.arguments[4]:"",
                 style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ))),
       body: Stack(
@@ -90,7 +92,6 @@ class ProductDetailPage extends GetView<ProductDetailController> {
               return [
                 SliverAppBar(
                   automaticallyImplyLeading: false,
-
                   collapsedHeight: 420,
                   expandedHeight: 420,
                   flexibleSpace: DetailBodyWidget(controller: controller),
@@ -154,138 +155,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                           },
                           data: controller.productDetail.product?.description ?? "",
                         ),
-                        Column(
-                          children: [
-                            TitleWidget(title: "Сопутствующие товары", onClick: (){}),
-                            SizedBox(
-                              height: 290,
-                              child: ListView.separated(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.relatedProducts.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 180,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          offset: Offset(0.0, 0.5), //(x,y)
-                                          blurRadius: 3.0,
-                                        ),
-                                      ],
-                                    ),
-                                    margin: const EdgeInsets.all(6),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        var product = controller.relatedProducts[index];
-                                        Get.toNamed(Routes.PRODUCT_DETAIL, arguments: [product.id, product.id, product.image, product.name, product.category!.name, product.price!.oldPrice],
-                                            preventDuplicates: false);
-                                      },
-                                      child: Column(
-                                        // mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 5,right: 5),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.end,
-                                              children: [
-                                                StreamBuilder(
-                                                    stream: LocalSource.getInstance().getAllFavouriteProducts(),
-                                                    builder: (context, AsyncSnapshot<List<FavouriteProduct>>? snapshot) {
-                                                      bool checkFav = false;
-                                                      (snapshot?.data)?.forEach((element) {
-                                                        if (controller.relatedProducts[index].id.toString() == element.id) {
-                                                          checkFav = true;
-                                                        }
-                                                      });
-                                                      return GestureDetector(
-                                                        onTap: () {
-                                                          if (!checkFav) {
-                                                            FavouriteProduct pro = FavouriteProduct(
-                                                                id: controller.relatedProducts[index].id.toString(),
-                                                                image: controller.relatedProducts[index].image.toString(),
-                                                                name: controller.relatedProducts[index].name.toString(),
-                                                                category: controller.relatedProducts[index].category!.name.toString(),
-                                                                slug: controller.relatedProducts[index].slug.toString(),
-                                                                price: controller.relatedProducts[index].price!.price.toString());
-                                                            LocalSource.getInstance().insertProduct(pro);
-
-                                                            checkFav = true;
-                                                            controller.update();
-                                                          } else {
-                                                            LocalSource.getInstance().removeProduct(controller.relatedProducts[index].id.toString());
-
-                                                            checkFav = false;
-                                                            controller.update();
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          height: 27,
-                                                          width: 27,
-                                                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.25)),
-                                                          child: Icon(
-                                                            Icons.favorite,
-                                                            color: checkFav ? Colors.red : Colors.grey,
-                                                            size: 20,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 170,
-                                            child: Center(
-                                              child: CachedNetworkImage(
-                                                imageUrl: controller.relatedProducts[index].image.toString(),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(left: 8, right: 8),
-                                              child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-                                                Text(
-                                                  controller.relatedProducts[index].category!.name.toString(),
-                                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.grey),
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(height: 3),
-                                                Text(
-                                                  controller.relatedProducts[index].name.toString(),
-                                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Text(
-                                                  "${controller.relatedProducts[index].price!.price.toString()} Сум",
-                                                  style: const TextStyle(fontSize: 15, color: Colors.red, fontWeight: FontWeight.bold),
-                                                )
-                                              ]),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                separatorBuilder: (BuildContext context, int index) {
-                                  return const SizedBox(
-                                    width: 5,
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 50),
+                       RelatedProducts(controller: controller),
+                         const SizedBox(height: 55),
                       ],
                     ),
                   ),
@@ -376,7 +247,6 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                         padding: const EdgeInsets.all(10),
                         child: GestureDetector(
                           onTap: () {
-                            // basketController.setProduct(productDetailController.product);
                           },
                           child: Container(
                             child: Center(
@@ -441,25 +311,29 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                             checkBas = true;
                           }
                           else {
-                            Get.toNamed(Routes.BASKET,
-                                arguments: [controller.productDetail.product!.slug, controller.productDetail.product!.id,controller.productDetail.product!.image,controller.productDetail.product!.name,controller.productDetail.product!.category!.name,controller.productDetail.product!.price!.oldPrice]
-                            );
+                            Get.until((route) => Get.currentRoute == '/main');
+                            Get.find<MainController>().setMenu(BottomMenu.BASKET);
                           }
-
                           controller.update();
                           myOrdersController.update();
                           homeController.update();
-
                         },
                         child: Container(
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:  [
-                                const Icon(
-                                  Icons.shopping_bag,
-                                  color: Colors.white,
-                                ),
+                                 checkBas?SvgPicture.asset(
+                                    "assets/flutterassets/ic_menu_shopping.svg",
+                                   color: Colors.white,
+                                   width: 18,
+                                   height: 18,
+                                 ) :
+                                 Image.asset(
+                                   "assets/flutterassets/ic_basket.png",
+                                   width: 24,
+                                   height: 24,
+                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -562,7 +436,7 @@ class DetailBodyWidget extends GetView<ProductDetailController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      Get.arguments[3],
+                      Get.arguments!=null? Get.arguments[3]:"",
                       style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
@@ -574,7 +448,7 @@ class DetailBodyWidget extends GetView<ProductDetailController> {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                              '${Get.arguments[5]} Сум',
+                              '${Get.arguments!=null?Get.arguments[5]:""} Сум',
                               style: const TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),

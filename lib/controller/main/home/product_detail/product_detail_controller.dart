@@ -54,7 +54,9 @@ showError(result);
   }
 }
 Future<void> getRelatedProducts(String slug) async {
+    setLoading(true);
   final result = await repository!.getProductDetail(slug);
+  setLoading(false);
   if (result is ProductDetail) {
     relatedProducts = result.product!.relatedProducts!;
     update();

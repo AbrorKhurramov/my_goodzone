@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
 import 'package:my_goodzone/data/models/carousel/carousel_response.dart';
 
 class DiscountPage extends StatelessWidget {
@@ -49,10 +50,11 @@ class DiscountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          actions: [
-            Icon(Icons.favorite_border),
-            SizedBox(width: 10,)
-          ],
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () => Get.back(),
+          ),
           title: Center(child: Text('Акции',style: TextStyle(fontWeight: FontWeight.bold,
               color: Colors.black),),),
         ),

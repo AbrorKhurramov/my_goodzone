@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_goodzone/controller/main/home/home_controller.dart';
 import 'package:my_goodzone/ui/main/home/promo_detail/promo_detail_page.dart';
+import 'package:my_goodzone/ui/main/home/widgets/promo_item_loading.dart';
 
 class PromoWidget extends StatelessWidget {
   const PromoWidget({
@@ -15,12 +16,15 @@ class PromoWidget extends StatelessWidget {
      builder:(controller) => SizedBox(
         height: 200,
         child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: controller.promos.length,
+          itemCount:controller.isLoading?3: controller.promos.length,
           itemBuilder: (context, index) {
-            return Padding(
+            return
+              controller.isLoading?const PromoItemLoadingCard():
+              Padding(
               padding:
-              const EdgeInsets.only(right: 10, left: 10, top: 5, bottom: 5),
+              const EdgeInsets.only(right: 8, left: 8, top: 5, bottom: 5),
               child: GestureDetector(
                 onTap: () {
 
